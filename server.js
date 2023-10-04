@@ -15,6 +15,19 @@ const db = knex({
   },
 });
 
+// const db = knex({
+//   client: "pg",
+//   connection: {
+//     host: "dpg-ckbk634iibqc73f2qs0g-a",
+//     port: 5432,
+//     user: "ras5014",
+//     password: "XiZobaHMfdgfwXL3102v3cNPEL3tcaIb",
+//     database: "smartbrains_ebds",
+//   },
+// });
+
+// console.log(db);
+
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
