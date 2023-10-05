@@ -16,11 +16,11 @@ dotenv.config();
 const db = knex({
   client: "pg",
   connection: {
-    host: process.env.HOST,
-    port: process.env.PORT2,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+    host: process.env.POSTGRES_HOST,
+    port: 5432,
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
   },
 });
 
@@ -50,6 +50,6 @@ app.put("/image", (req, res) => {
   image.imageHandler(req, res, db);
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`listening on ${process.env.PORT1}`);
+app.listen(3001, () => {
+  console.log(`listening on ${3001}`);
 });
