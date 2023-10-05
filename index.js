@@ -16,11 +16,12 @@ dotenv.config();
 const db = knex({
   client: "pg",
   connection: {
-    host: process.env.HOST,
-    port: 5432,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+    // host: process.env.HOST,
+    // port: 5432,
+    // user: process.env.USER,
+    // password: process.env.PASSWORD,
+    // database: process.env.DATABASE,
+    connectionString: process.env.URL + "?sslmode=require",
   },
 });
 
@@ -50,6 +51,15 @@ app.put("/image", (req, res) => {
   image.imageHandler(req, res, db);
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
+  await db
+    .raw("SELECT 1")
+    .then(() => {
+      console.log("PostgreSQL connected");
+    })
+    .catch((e) => {
+      console.log("PostgreSQL not connected");
+      console.error(e);
+    });
   console.log(`listening on ${process.env.PORT}`);
 });
